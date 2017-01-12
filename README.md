@@ -1,2 +1,4 @@
-# awesome-python3-webapp
-# —ßœ∞¿¥‘¥£∫¡Œ—©∑Âpython3ΩÃ≥Ã£∫http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432170937506ecfb2f6adf8e4757939732f3e32b781c000
+# **awesome-python3-webapp**
+## Â≠¶‰π†Êù•Ê∫êÔºö
+## ÂªñÈõ™Â≥∞python3ÊïôÁ®ãÔºö
+## http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432170937506ecfb2f6adf8e4757939732f3e32b781c000
