@@ -43,7 +43,7 @@
     |
     +—— backup/                 <---- 备份目录
     |
-    +—— conf/                   <---- 配置文件
+    +—— conf/                   <---- 配置文件目录
     |
     +—— dist/                   <---- 打包目录
     |
@@ -55,7 +55,7 @@
     |
     +—— ios/                    <---- 存放IOS APP工程
     |
-    +—— LICENSE                 <---- 代码LICENSE
+    +—— LICENSE                 <---- LICENSE文件
 
 >创建好项目的目录结构后，建立[git](https://www.git-scm.com/)仓库`awesome-python3-webapp`并同步至[github](https://github.com)，保证代码修改的安全
 #####开发工具

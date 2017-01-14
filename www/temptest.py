@@ -10,9 +10,9 @@ if __name__ == "__main__":
     @asyncio.coroutine
     def test():
 
-        yield from orm.create_pool(loop=loop, host='localhost', port=3306, user='root',
-                                   password='Tux_970212**-..', db='awesome')
-        u = User(id='2', name='zt', email='zzgdata@163.com', passwd='1234567890',
+        yield from orm.create_pool(loop=loop, host='localhost', port=3306, user='www-data',
+                                   password='www--data', db='awesome')
+        u = User(id='1', name='zt', email='zzgdata@gmail.com', passwd='1234567890',
                  image='about:blank', admin=False)
 
         yield from u.save()
