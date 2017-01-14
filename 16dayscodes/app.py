@@ -10,6 +10,7 @@ def index(request):
     # 注意，必须加上content_type='text/html'才能将接收到的代码解析并显示出来，否则只能接收而不能显示
     return web.Response(body=b'<h1>Awesome!</h1>', content_type='text/html')
 
+
 async def init(event_loop):
     app = web.Application(loop=event_loop)
     app.router.add_route('GET', '/', index)
