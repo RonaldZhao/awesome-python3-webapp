@@ -4,12 +4,14 @@
 ---
 ####Day 1 - 搭建开发环境
 #####搭建开发环境
+
 >首先，确认系统安装的Python版本是`3.5.x`：
 
 ```python
     E:\virtualenv> python3 --version
     Python 3.5.2
 ```
+
 >然后，用`virtualenv`创建隔离的开发环境
 
 ```python
@@ -19,6 +21,7 @@
     New python executable in E:\virtualenv\awesome-python3-webapp\Scripts\python.exe
     Installing setuptools, pip, wheel...done.
 ```
+
 >激活`virtualenv`：
 
 ```python
@@ -26,23 +29,28 @@
     E:\virtualenv\awesome-python3-webapp\Scripts> activate
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>
 ```
+
 >接下来用`pip`安装开发Web APP需要的第三方库(以下安装都是使用豆瓣的源)：<br>
 >异步框架`aiohttp`：
 
 ```python
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>pip3 install -i https://pypi.douban.com/simple aiohttp
 ```
+
 >前端模板引擎`jinja2`：
 
 ```python
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>pip3 install -i https://pypi.douban.com/simple jinja2
 ```
+
 >MySQL的Python异步驱动程序`aiomysql`(MySQL 5.x数据库已经提前安装好)：
 
 ```python
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>pip3 install -i https://pypi.douban.com/simple aiomysql
 ```
+
 #####项目结构
+
 >选择一个工作目录，然后新建如下的目录结构：
 
     awesome-python3-webapp/     <--- 根目录
@@ -66,9 +74,11 @@
 >创建好项目的目录结构后，建立[git](https://www.git-scm.com/)仓库`awesome-python3-webapp`并同步至[github](https://github.com)，保证代码修改的安全。
 
 #####开发工具
+
 >[Sublime Text3](http://www.sublimetext.com/3) + [PyCharm](https://www.jetbrains.com/pycharm/)
 
 ####Day 2 - 编写Web App骨架
+
 >由于我们的Web APP建立在`asyncio`的基础上，因此我们用`aiohttp`编写一个基本的`app.py`：
 
 ```python
@@ -99,32 +109,43 @@
     loop.run_until_complete(init(loop))
     loop.run_forever()
 ```
+
 >在终端运行`app.py`，Web APP将在`9000`端口监听HTTP请求，并对首页`/`进行响应：
+
 ```python
     (awesome-python3-webapp) e:\workspace\python\awesome-python3-webapp>python app.py
     INFO:root:server started at http://127.0.0.1:9000
 ```
+
 >然后在浏览器端访问`http://127.0.0.1:9000`，将显示标题h1样式的'Awesome'：<br>
 
 ![Awesome](day02-1.png)<br>
+
 >并在终端输出以下信息：
+
 ```python
     INFO:aiohttp.access:127.0.0.1 - - [13/Jan/2017:01:42:33 +0000] "GET / HTTP/1.1" 200 16 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
 ```
+
 >这说明我们的Web APP骨架已经搭建好了，可以进一步往里面添加更多的东西。<br>
+
 >运行完毕按`Ctrl+C`结束程序。
 
 ---
+
 >对`asyncio`的部分说明：<br>
 
     asyncio是Python 3.4版本引入的标准库，直接内置了对异步IO的支持。
     asyncio的编程模型就是一个消息循环。我们从asyncio模块中直接获取一个EventLoop的引用。然后把需要执行的协程扔到EventLoop中执行，
     就实现了异步IO。
     @asyncio.coroutine把一个generator标记为coroutine类型，然后我们就把这个coroutine扔到EventLoop中执行。
+
 >对`app.py`其他部分的说明：
 
     待添加...
+
 ####Day 3 - 编写ORM
+
 在一个Web APP中，所有数据，包括用户信息、发布的日志、评论等，都是存储在数据库中的。所以在这个`awesome-python3-webapp`项目中，我们选择MySQL数据库。
 
 Web App里面有很多地方都要访问数据库。访问数据库需要创建数据库连接、游标对象，然后执行SQL语句，最后处理异常，清理资源。这些访问数据库的代码如果分散到各个函数中，势必无法维护，也不利于代码的复用。
