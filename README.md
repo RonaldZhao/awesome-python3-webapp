@@ -84,33 +84,28 @@
 ```python
     import logging
     import asyncio
-    import os
-    import json
-    import time
-    from datetime import datetime
     from aiohttp import web
-
+    
     logging.basicConfig(level=logging.INFO)
-
-
+    
+    
     def index(request):
-        return web.Response(body=b'<h1>Awesome</h1>', content_type='text/html')
-
-
-    @asyncio.coroutine
-    def init(loop):
-        app = web.Application(loop=loop)
+        return web.Response(body=b'<h1>Awesome!</h1>', content_type='text/html')
+    
+    
+    async def init(event_loop):
+        app = web.Application(loop=event_loop)
         app.router.add_route('GET', '/', index)
-        srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 9000)
+        srv = await loop.create_server(app.make_handler(), '127.0.0.1', 9000)
         logging.info('server started at http://127.0.0.1:9000')
         return srv
-
+    
     loop = asyncio.get_event_loop()
     loop.run_until_complete(init(loop))
     loop.run_forever()
 ```
 
->在终端运行`app.py`，Web APP将在`9000`端口监听HTTP请求，并对首页`/`进行响应：
+>在终端运行`app.py`后，Web APP将在`9000`端口监听HTTP请求，并对等待对首页`/`进行响应：
 
 ```python
     (awesome-python3-webapp) e:\workspace\python\awesome-python3-webapp>python app.py
@@ -119,7 +114,7 @@
 
 >然后在浏览器端访问`http://127.0.0.1:9000`，将显示标题h1样式的'Awesome'：<br>
 
-![Awesome](day02-1.png)<br>
+![Awesome](dist\day02-1.png)<br>
 
 >并在终端输出以下信息：
 
@@ -138,11 +133,7 @@
     asyncio是Python 3.4版本引入的标准库，直接内置了对异步IO的支持。
     asyncio的编程模型就是一个消息循环。我们从asyncio模块中直接获取一个EventLoop的引用。然后把需要执行的协程扔到EventLoop中执行，
     就实现了异步IO。
-    @asyncio.coroutine把一个generator标记为coroutine类型，然后我们就把这个coroutine扔到EventLoop中执行。
-
->对`app.py`其他部分的说明：
-
-    待添加...
+    async相当于@asyncio.coroutine，会把一个generator标记为coroutine类型，然后我们就把这个coroutine扔到EventLoop中执行。
 
 ####Day 3 - 编写ORM
 
