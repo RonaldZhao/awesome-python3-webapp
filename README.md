@@ -5,11 +5,13 @@
 ####Day 1 - 搭建开发环境
 #####搭建开发环境
 >首先，确认系统安装的Python版本是`3.5.x`：
+
 ```python
     E:\virtualenv> python3 --version
     Python 3.5.2
 ```
 >然后，用`virtualenv`创建隔离的开发环境
+
 ```python
     E:\virtualenv> virtualenv awesome-python3-webapp --no-site-packages --python=D:\Python35\python.exe
     Running virtualenv with interpreter D:\Python35\python.exe
@@ -18,6 +20,7 @@
     Installing setuptools, pip, wheel...done.
 ```
 >激活`virtualenv`：
+
 ```python
     E:\virtualenv> cd awesome-python3-webapp\Scripts
     E:\virtualenv\awesome-python3-webapp\Scripts> activate
@@ -25,14 +28,17 @@
 ```
 >接下来用`pip`安装开发Web APP需要的第三方库(以下安装都是使用豆瓣的源)：<br>
 >异步框架`aiohttp`：
+
 ```python
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>pip3 install -i https://pypi.douban.com/simple aiohttp
 ```
->前段模板引擎`jinja2`：
+>前端模板引擎`jinja2`：
+
 ```python
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>pip3 install -i https://pypi.douban.com/simple jinja2
 ```
 >MySQL的Python异步驱动程序`aiomysql`(MySQL 5.x数据库已经提前安装好)：
+
 ```python
     (awesome-python3-webapp) E:\virtualenv\awesome-python3-webapp\Scripts>pip3 install -i https://pypi.douban.com/simple aiomysql
 ```
@@ -57,11 +63,14 @@
     |
     +—— LICENSE                 <---- LICENSE文件
 
->创建好项目的目录结构后，建立[git](https://www.git-scm.com/)仓库`awesome-python3-webapp`并同步至[github](https://github.com)，保证代码修改的安全
+>创建好项目的目录结构后，建立[git](https://www.git-scm.com/)仓库`awesome-python3-webapp`并同步至[github](https://github.com)，保证代码修改的安全。
+
 #####开发工具
 >[Sublime Text3](http://www.sublimetext.com/3) + [PyCharm](https://www.jetbrains.com/pycharm/)
+
 ####Day 2 - 编写Web App骨架
 >由于我们的Web APP建立在`asyncio`的基础上，因此我们用`aiohttp`编写一个基本的`app.py`：
+
 ```python
     import logging
     import asyncio
