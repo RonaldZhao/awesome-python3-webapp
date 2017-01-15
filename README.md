@@ -114,7 +114,7 @@
 
 >然后在浏览器端访问`http://127.0.0.1:9000`，将显示标题h1样式的'Awesome'：<br>
 
-![Awesome](dist\day02-1.png)<br>
+![Awesome](.\dist\day02-1.png)<br>
 
 >并在终端输出以下信息：
 
